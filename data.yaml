@@ -1,0 +1,12 @@
+# Edit path to the folder containing images/ and labels/
+path: dataset
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: Plastic
+  1: Paper
+  2: Metal
+  3: Glass
+  4: Organic

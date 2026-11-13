@@ -1,0 +1,140 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EcoVision | Smart Waste AI</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header class="nav">
+  <a class="brand" href="/">🌿 EcoVision</a>
+  <nav>
+    <a href="#upload">Analyze</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <span class="pill">AI-powered waste analysis</span>
+
+  <h1>Make waste visible.<br>
+      <span>Make recycling smarter.</span></h1>
+
+  <p>Upload an image and let your trained AI model identify and count waste.</p>
+
+  <a class="button" href="#upload">Start analyzing ↓</a>
+</section>
+
+<section id="upload" class="panel">
+  <h2>Upload waste image</h2>
+
+  <p class="status ready">● AI waste detection system ready</p>
+
+  <form id="uploadForm">
+
+    <label class="dropzone" for="imageInput">
+      <span class="upload-icon">📷</span>
+      <strong>Choose an image</strong>
+      <small>JPG, JPEG or PNG · up to 12 MB</small>
+
+      <input id="imageInput" name="image" type="file"
+             accept=".jpg,.jpeg,.png,image/jpeg,image/png" required>
+    </label>
+
+    <img id="preview" class="preview hidden" alt="Selected image preview">
+
+    <div class="actions">
+      <button class="button" id="analyzeBtn" type="submit">Analyze Waste</button>
+      <button class="button secondary" id="resetBtn" type="button">Reset</button>
+    </div>
+
+  </form>
+
+  <p id="message" role="status"></p>
+</section>
+
+<section id="dashboard" class="panel hidden">
+
+  <h2>Analysis Dashboard</h2>
+
+  <div class="stats">
+    <article class="stat">
+      <small>Total waste items</small>
+      <strong id="total">0</strong>
+    </article>
+
+    <article class="stat">
+      <small>Categories detected</small>
+      <strong id="different">0</strong>
+    </article>
+    <article class="stat">
+    <small>People Detected</small>
+    <strong id="peopleCount">0</strong>
+</article>
+  </div>
+
+  <div class="category-grid" id="categoryCards"></div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h3>Items by category</h3>
+      <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>Category share</h3>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+
+  <h3>Detected image (bounding boxes)</h3>
+
+  <img id="annotated" class="result-image"
+       alt="AI detections with bounding boxes">
+
+  <h3>Detection details</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Confidence</th>
+          <th>Bounding Box</th>
+        </tr>
+      </thead>
+
+      <tbody id="detections"></tbody>
+    </table>
+  </div>
+
+</section>
+
+<section id="about" class="about">
+  <h2>How it works</h2>
+  <p>
+    EcoVision uses a custom-trained YOLO AI model to detect waste objects.
+    Each detected object is assigned to one of five waste categories.
+    The dashboard displays object counts, category percentages,
+    confidence scores and bounding boxes.
+  </p>
+</section>
+
+</main>
+
+<footer>EcoVision · Smart Waste Classification and Counting System</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
+
